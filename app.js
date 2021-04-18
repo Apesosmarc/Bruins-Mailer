@@ -1,12 +1,13 @@
 require("dotenv").config();
 
+const PORT = process.env.PORT;
 const cron = require("node-cron");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
 const date = new Date();
 
 let mailOptions = {
-  from: process.env.EMAIL,
+  from: "bruinsupdate@gmail.com",
   to: "apesos2013@gmail.com, apesossteve@gmail.com",
   subject: "BRUINS GAME TODAY",
   text: "",
@@ -25,7 +26,7 @@ function getData() {
   fetch("https://statsapi.web.nhl.com/api/v1/schedule?teamId=6")
     .then((res) => res.json())
     .then((data) => {
-      if (!data.dates[0]) {
+      if (!data.date[0].games[0]) {
         throw new Error("no game today");
       }
       const awayTeam = data.dates[0].games[0].teams.away.team.name;
