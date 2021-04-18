@@ -6,6 +6,8 @@ const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
 const date = new Date();
 
+console.log("logged in");
+
 let mailOptions = {
   from: "bruinsupdate@gmail.com",
   to: "apesos2013@gmail.com, apesossteve@gmail.com",
@@ -55,8 +57,6 @@ function getData() {
     })
     .catch((e) => console.log(e));
 }
-
-getData();
 
 const bruinsFetch = cron.schedule(
   "0 11 * * 0-6",
