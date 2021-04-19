@@ -12,19 +12,6 @@ app.listen(port, () => {
   console.log(`starting server at: ${port}!`);
 });
 
-//Create HTTP server and listen on port 3000 for requests
-const server = http.createServer((req, res) => {
-  //Set the response HTTP header with HTTP status and Content type
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World\n");
-});
-
-//listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-
 let mailOptions = {
   from: "bruinsupdate@gmail.com",
   to: "apesos2013@gmail.com, apesossteve@gmail.com",
@@ -85,4 +72,3 @@ const bruinsFetch = cron.schedule(
     timezone: "America/New_York",
   }
 );
-
