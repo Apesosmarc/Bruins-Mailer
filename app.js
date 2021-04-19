@@ -85,3 +85,4 @@ const bruinsFetch = cron.schedule(
     timezone: "America/New_York",
   }
 );
+
