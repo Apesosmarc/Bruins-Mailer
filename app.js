@@ -1,12 +1,29 @@
 require("dotenv").config();
 
-const PORT = process.env.PORT;
 const cron = require("node-cron");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
-const date = new Date();
+const express = require("express");
 
-console.log("logged in");
+const app = express();
+const port = process.env.PORT;
+
+app.listen(port, () => {
+  console.log(`starting server at: ${port}!`);
+});
+
+//Create HTTP server and listen on port 3000 for requests
+const server = http.createServer((req, res) => {
+  //Set the response HTTP header with HTTP status and Content type
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello World\n");
+});
+
+//listen for request on port 3000, and as a callback function have the port listened on logged
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 let mailOptions = {
   from: "bruinsupdate@gmail.com",
