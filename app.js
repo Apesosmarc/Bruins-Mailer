@@ -3,14 +3,6 @@ require("dotenv").config();
 const cron = require("node-cron");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
-const express = require("express");
-
-const app = express();
-const port = process.env.PORT;
-
-app.listen(port, () => {
-  console.log(`starting server at: ${port}!`);
-});
 
 let mailOptions = {
   from: "bruinsupdate@gmail.com",
@@ -32,7 +24,7 @@ function getData() {
   fetch("https://statsapi.web.nhl.com/api/v1/schedule?teamId=6")
     .then((res) => res.json())
     .then((data) => {
-      if (!data.date[0].games[0]) {
+      if (!data.dates[0]) {
         throw new Error("no game today");
       }
       const awayTeam = data.dates[0].games[0].teams.away.team.name;
@@ -61,6 +53,8 @@ function getData() {
     })
     .catch((e) => console.log(e));
 }
+
+getData();
 
 const bruinsFetch = cron.schedule(
   "0 11 * * 0-6",
